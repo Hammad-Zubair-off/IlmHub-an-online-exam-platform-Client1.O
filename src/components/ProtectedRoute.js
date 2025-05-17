@@ -192,7 +192,7 @@ function ProtectedRoute({ children }) {
                 ></i>
               )}
             </div>
-            <h1 className="text-2xl text-white platform-title">Insider Threat trainee platform</h1>
+            <h1 className="text-2xl text-white platform-title">IlmHub an online exam platform</h1>
             <div className="user-info">
               <div className="flex gap-1 items-center">
                 <h1 className="text-md text-white">{user?.name}</h1>

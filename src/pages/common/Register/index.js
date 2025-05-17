@@ -31,7 +31,7 @@ function Register() {
       <div className="card w-full max-w-md p-3 bg-white">
         <div className="flex flex-col">
           <h1 className="text-xl sm:text-2xl break-words">
-            Insider Threat trainee platform - REGISTER<i className="ri-user-add-line ml-1"></i>
+            IlmHub an online exam platform - REGISTER<i className="ri-user-add-line ml-1"></i>
           </h1>
           <div className="divider"></div>
           <Form layout="vertical" className="mt-2" onFinish={onFinish}>

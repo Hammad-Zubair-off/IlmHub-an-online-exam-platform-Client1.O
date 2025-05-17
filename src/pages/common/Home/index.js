@@ -35,7 +35,7 @@ function Home() {
   return (
     user && (
       <div className="home-container">
-        <PageTitle title={`Hi ${user.name}, Status to Insider Threat trainee platform`} />
+        <PageTitle title={`Hi ${user.name}, Status to IlmHub an online exam platform`} />
         <div className="divider"></div>
         <Row gutter={[16, 16]}>
           {exams.map((exam) => (
