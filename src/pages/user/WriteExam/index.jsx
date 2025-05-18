@@ -116,6 +116,16 @@ function WriteExam() {
       getExamData();
     }
   }, []);
+
+  // Defensive check for examData and questions
+  if (!examData || !Array.isArray(questions) || questions.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-full">
+        <h2 className="text-xl text-red-500">Exam not found or no questions available.</h2>
+      </div>
+    );
+  }
+
   return (
     examData && (
       <div className="mt-2">

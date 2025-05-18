@@ -6,7 +6,11 @@ export const addReport = async (payload) => {
         const response = await axiosInstance.post("/api/reports/add-report", payload);
         return response.data;
     } catch (error) {
-        return error.response.data;
+        return {
+            success: false,
+            message: error.response?.data?.message || error.message || "Unknown error",
+            data: null
+        };
     }
 }
 
@@ -16,7 +20,11 @@ export const getAllReports = async (filters) => {
         const response = await axiosInstance.post("/api/reports/get-all-reports" , filters);
         return response.data;
     } catch (error) {
-        return error.response.data;
+        return {
+            success: false,
+            message: error.response?.data?.message || error.message || "Unknown error",
+            data: null
+        };
     }
 } 
 
@@ -26,6 +34,10 @@ export const getAllReportsByUser = async () => {
         const response = await axiosInstance.post("/api/reports/get-all-reports-by-user");
         return response.data;
     } catch (error) {
-        return error.response.data;
+        return {
+            success: false,
+            message: error.response?.data?.message || error.message || "Unknown error",
+            data: null
+        };
     }
 }

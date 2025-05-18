@@ -72,7 +72,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDashboard>
-                  <Exams />
+                <Exams />
                 </AdminDashboard>
               </ProtectedRoute>
             }
@@ -82,7 +82,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDashboard>
-                  <AddEditExam />
+                <AddEditExam />
                 </AdminDashboard>
               </ProtectedRoute>
             }
@@ -92,7 +92,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDashboard>
-                  <AddEditExam />
+                <AddEditExam />
                 </AdminDashboard>
               </ProtectedRoute>
             }
@@ -102,7 +102,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDashboard>
-                  <AdminReports />
+                <AdminReports />
                 </AdminDashboard>
               </ProtectedRoute>
             }
