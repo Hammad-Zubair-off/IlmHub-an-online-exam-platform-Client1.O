@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+// Define the backend URL as a constant
+const BACKEND_URL = 'https://ilm-hub-an-online-exam-platform-server.vercel.app';
+
 const axiosInstance = axios.create({
-    baseURL: 'https://ilm-hub-an-online-exam-platform-server.vercel.app',
+    baseURL: BACKEND_URL,
     headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -12,6 +15,8 @@ const axiosInstance = axios.create({
 // Request interceptor for debugging
 axiosInstance.interceptors.request.use(
     (config) => {
+        // Ensure the request goes to the backend URL
+        config.baseURL = BACKEND_URL;
         console.log('Request URL:', config.baseURL + config.url);
         console.log('Request Method:', config.method);
         console.log('Request Headers:', config.headers);
