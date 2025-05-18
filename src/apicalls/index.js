@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5001',
+    baseURL: API_URL,
     headers: {
          Authorization : `Bearer ${localStorage.getItem('token')}`
     }
