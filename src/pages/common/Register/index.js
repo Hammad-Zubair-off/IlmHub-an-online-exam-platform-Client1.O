@@ -8,24 +8,21 @@ import { HideLoading, ShowLoading } from "../../../redux/loaderSlice";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [form] = Form.useForm();
-
   const onFinish = async (values) => {
     try {
       dispatch(ShowLoading());
       const response = await registerUser(values);
-      dispatch(HideLoading());
 
+      dispatch(HideLoading());
       if (response.success) {
         message.success(response.message);
-        form.resetFields();
         navigate("/login");
       } else {
         message.error(response.message);
       }
     } catch (error) {
       dispatch(HideLoading());
-      message.error(error.message || "Registration failed. Please try again.");
+      message.error(error.message);
     }
   };
 
@@ -37,41 +34,14 @@ function Register() {
             IlmHub an online exam platform - REGISTER<i className="ri-user-add-line ml-1"></i>
           </h1>
           <div className="divider"></div>
-          <Form 
-            form={form}
-            layout="vertical" 
-            className="mt-2" 
-            onFinish={onFinish}
-            validateTrigger="onBlur"
-          >
-            <Form.Item 
-              name="name" 
-              label="Name"
-              rules={[
-                { required: true, message: 'Please enter your name' },
-                { min: 3, message: 'Name must be at least 3 characters' }
-              ]}
-            >
+          <Form layout="vertical" className="mt-2" onFinish={onFinish}>
+            <Form.Item name="name" label="Name">
               <input type="text" className="w-full" />
             </Form.Item>
-            <Form.Item 
-              name="email" 
-              label="Email"
-              rules={[
-                { required: true, message: 'Please enter your email' },
-                { type: 'email', message: 'Please enter a valid email' }
-              ]}
-            >
-              <input type="email" className="w-full" />
+            <Form.Item name="email" label="Email">
+              <input type="text" className="w-full" />
             </Form.Item>
-            <Form.Item 
-              name="password" 
-              label="Password"
-              rules={[
-                { required: true, message: 'Please enter your password' },
-                { min: 6, message: 'Password must be at least 6 characters' }
-              ]}
-            >
+            <Form.Item name="password" label="Password">
               <input type="password" className="w-full" />
             </Form.Item>
 
