@@ -25,7 +25,7 @@ export const getAllExams = async () => {
 
 export const getExamById = async (payload) => {
   try {
-    const response = await axiosInstance.get(
+    const response = await axiosInstance.post(
       "/api/exams/get-exam-by-id",
       payload
     );

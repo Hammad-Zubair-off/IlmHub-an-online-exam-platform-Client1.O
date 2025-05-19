@@ -56,15 +56,18 @@ function AddEditExam() {
       const response = await getExamById({
         examId: params.id,
       });
+      console.log('getExamById response:', response); // Debug log
       dispatch(HideLoading());
       if (response.success) {
         setExamData(response.data);
       } else {
         message.error(response.message);
+        setExamData(null); // Explicitly set to null if not found
       }
     } catch (error) {
       dispatch(HideLoading());
       message.error(error.message);
+      setExamData(null); // Explicitly set to null on error
     }
   };
 
@@ -162,7 +165,7 @@ function AddEditExam() {
       <PageTitle title={params.id ? "Edit Exam" : "Add Exam"} />
       <div className="divider"></div>
 
-      {(examData || !params.id) && (
+      {(examData || !params.id) ? (
         <Form layout="vertical" onFinish={onFinish} initialValues={examData}>
           <Tabs defaultActiveKey="1" className="w-full">
             <TabPane tab="Exam Details" key="1">
@@ -242,6 +245,8 @@ function AddEditExam() {
             )}
           </Tabs>
         </Form>
+      ) : (
+        <div className="text-center text-red-500 mt-8">No exam found with this ID.</div>
       )}
 
       {showAddEditQuestionModal && (

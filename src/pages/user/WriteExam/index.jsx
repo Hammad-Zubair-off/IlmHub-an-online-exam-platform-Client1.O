@@ -21,6 +21,8 @@ function WriteExam() {
   const [timeUp, setTimeUp] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
   const { user } = useSelector((state) => state.users);
+  const QUESTION_TIME = 30; // seconds per question
+
   const getExamData = async () => {
     try {
       dispatch(ShowLoading());
@@ -91,18 +93,35 @@ function WriteExam() {
     }
   };
 
-  const startTimer = () => {
-    let totalSeconds = examData.duration;
-    const intervalId = setInterval(() => {
-      if (totalSeconds > 0) {
-        totalSeconds = totalSeconds - 1;
-        setSecondsLeft(totalSeconds);
-      } else {
-        setTimeUp(true);
-      }
-    }, 1000);
-    setIntervalId(intervalId);
-  };
+  // Per-question timer logic
+  useEffect(() => {
+    if (view === "questions") {
+      setSecondsLeft(QUESTION_TIME);
+      if (intervalId) clearInterval(intervalId);
+
+      const newIntervalId = setInterval(() => {
+        setSecondsLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(newIntervalId);
+            // If not last question, auto-advance
+            if (selectedQuestionIndex < questions.length - 1) {
+              setSelectedQuestionIndex((idx) => idx + 1);
+            } else {
+              setTimeUp(true);
+            }
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      setIntervalId(newIntervalId);
+
+      // Cleanup on unmount or question change
+      return () => clearInterval(newIntervalId);
+    }
+    // eslint-disable-next-line
+  }, [selectedQuestionIndex, view]);
 
   useEffect(() => {
     if (timeUp && view === "questions") {
@@ -137,7 +156,7 @@ function WriteExam() {
           <Instructions
             examData={examData}
             setView={setView}
-            startTimer={startTimer}
+            startTimer={() => setView("questions")}
           />
         )}
 
