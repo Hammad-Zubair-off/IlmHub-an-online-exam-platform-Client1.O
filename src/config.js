@@ -1,1 +1,1 @@
-export const API_URL = 'https://ilm-hub-an-online-exam-platform-server.vercel.app'; 
+export const API_URL = 'https://ilm-hub-an-online-exam-platform-server.vercel.app';
