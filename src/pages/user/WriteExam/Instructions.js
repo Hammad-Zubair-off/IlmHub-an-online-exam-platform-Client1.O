@@ -3,58 +3,75 @@ import { useNavigate } from "react-router-dom";
 
 function Instructions({ examData, setView, startTimer }) {
   const navigate = useNavigate();
+  
   return (
-    <div className="flex flex-col items-center gap-5 w-full max-w-3xl mx-auto p-2 sm:p-4">
-      <div className="w-full bg-white rounded-lg shadow-sm p-4 sm:p-6">
-        <h1 className="text-xl sm:text-2xl text-center font-semibold underline mb-4">Instructions</h1>
-        <ul className="flex flex-col gap-2 sm:gap-3 text-sm sm:text-base">
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Exam must be completed in {examData.duration} seconds.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Exam will be submitted automatically after {examData.duration} seconds.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Once submitted, you cannot change your answers.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Do not refresh the page.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>You can use the <span className="font-bold">"Previous"</span> and <span className="font-bold">"Next"</span> buttons to navigate between questions.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Total marks of the exam is <span className="font-bold">{examData.totalMarks}</span>.</span>
-          </li>
-          <li className="flex items-start">
-            <span className="mr-2">•</span>
-            <span>Passing marks of the exam is <span className="font-bold">{examData.passingMarks}</span>.</span>
-          </li>
-        </ul>
+    <div className="min-h-screen flex flex-col bg-gray-50 p-4">
+      {/* Instructions Section - Takes available space but allows scrolling if needed */}
+      <div className="flex-1 max-w-4xl mx-auto w-full overflow-y-auto">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">
+            Instructions
+          </h2>
+          
+          <div className="space-y-4 text-gray-700">
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>Exam must be completed in {examData.duration} seconds.</span>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>Exam will be submitted automatically after {examData.duration} seconds.</span>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>Once submitted, you cannot change your answers.</span>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>Do not refresh the page.</span>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>You can use the "Previous" and "Next" buttons to navigate between questions.</span>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>Total marks of the exam is {examData.totalMarks}.</span>
+            </div>
+            
+            <div className="flex items-start space-x-3">
+              <span className="text-blue-500 font-bold">•</span>
+              <span>Passing marks of the exam is {examData.passingMarks}.</span>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div className="flex flex-row sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-4 w-full justify-center">
-        <button 
-          className="primary-outlined-btn px-6 sm:px-8 py-2"
-          onClick={() => navigate('/')}
-        >
-          CLOSE
-        </button>
-        <button
-          className="primary-contained-btn px-6 sm:px-8 py-2"
-          onClick={() => {
-            startTimer();
-            setView("questions");
-          }}
-        >
-          Start Exam
-        </button>
+      
+      {/* Buttons Section - Fixed at bottom */}
+      <div className="flex-shrink-0 max-w-4xl mx-auto w-full">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button
+            className="w-full sm:w-auto px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200 min-w-[120px]"
+            onClick={() => navigate('/')}
+          >
+            CLOSE
+          </button>
+          
+          <button
+            className="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 min-w-[120px]"
+            onClick={() => {
+              startTimer();
+              setView("questions");
+            }}
+          >
+            Start Exam
+          </button>
+        </div>
       </div>
     </div>
   );
