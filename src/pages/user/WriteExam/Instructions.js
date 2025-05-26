@@ -39,7 +39,7 @@ function Instructions({ examData, setView, startTimer }) {
         </ul>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-4 w-full justify-center">
+      <div className="flex flex-row sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-4 w-full justify-center">
         <button 
           className="primary-outlined-btn px-6 sm:px-8 py-2"
           onClick={() => navigate('/')}
