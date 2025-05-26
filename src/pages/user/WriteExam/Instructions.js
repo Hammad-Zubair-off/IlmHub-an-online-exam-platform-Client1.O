@@ -52,25 +52,27 @@ function Instructions({ examData, setView, startTimer }) {
         </div>
       </div>
       
-      {/* Buttons Section - Fixed at bottom */}
+      {/* Buttons Section - Fixed at bottom with horizontal scroll for small screens */}
       <div className="flex-shrink-0 max-w-4xl mx-auto w-full">
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button
-            className="w-full sm:w-auto px-8 py-3 font-semibold rounded-lg  min-w-[120px] primary-contained-btn"
-            onClick={() => navigate('/')}
-          >
-            CLOSE
-          </button>
-          
-          <button
-            className="w-full sm:w-auto px-8 py-3 font-semibold rounded-lg  min-w-[120px] primary-contained-btn"
-            onClick={() => {
-              startTimer();
-              setView("questions");
-            }}
-          >
-            Start Exam
-          </button>
+        <div className="overflow-x-auto">
+          <div className="flex gap-3 justify-center items-center min-w-max px-4 py-2 lg:min-w-0 lg:px-0">
+            <button
+              className="flex-shrink-0 px-6 py-3 font-semibold rounded-lg min-w-[120px] primary-contained-btn whitespace-nowrap"
+              onClick={() => navigate('/')}
+            >
+              CLOSE
+            </button>
+            
+            <button
+              className="flex-shrink-0 px-6 py-3 font-semibold rounded-lg min-w-[120px] primary-contained-btn whitespace-nowrap"
+              onClick={() => {
+                startTimer();
+                setView("questions");
+              }}
+            >
+              Start Exam
+            </button>
+          </div>
         </div>
       </div>
     </div>
