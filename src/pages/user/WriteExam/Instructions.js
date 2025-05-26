@@ -56,14 +56,14 @@ function Instructions({ examData, setView, startTimer }) {
       <div className="flex-shrink-0 max-w-4xl mx-auto w-full">
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
-            className="w-full sm:w-auto px-8 py-3 bg-gray-500 hover:bg-gray-600 text-white font-semibold rounded-lg transition-colors duration-200 min-w-[120px] primary-outlined-btn"
+            className="w-full sm:w-auto px-8 py-3  text-white font-semibold rounded-lg min-w-[120px] primary-outlined-btn"
             onClick={() => navigate('/')}
           >
             CLOSE
           </button>
           
           <button
-            className="w-full sm:w-auto px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 min-w-[120px] primary-contained-btn"
+            className="w-full sm:w-auto px-8 py-3 font-semibold rounded-lg  min-w-[120px] primary-contained-btn"
             onClick={() => {
               startTimer();
               setView("questions");
